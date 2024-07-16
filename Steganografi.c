@@ -39,7 +39,7 @@ int main(){
 			//	penyisipan ke pixel
 				fseek(file1, 54, SEEK_SET);	
 				if(pesan[i] != '\0'){
-					for(int j=0;j<7;j++){
+					for(int j=0;j<8;j++){
 						
 						fread(&pixel, sizeof(unsigned char), 1, file1);
 						if(pesan[i] & 0x80){
@@ -61,7 +61,7 @@ int main(){
 				}
 				
 			//	pembatasan dengan '\0'
-				for(int z = 0;z<7;z++){
+				for(int z = 0;z<8;z++){
 					fread(&pixel, sizeof(unsigned char), 1, file1);
 					pixel &= 0xFE;
 					fwrite(&pixel, sizeof(unsigned char), 1, file2); 
@@ -92,7 +92,7 @@ int main(){
 			
 			while(1){
         		pesan[i] = 0;  // Inisialisasi pesan[i] ke 0
-        		for (int j = 0; j < 7; j++) {
+        		for (int j = 0; j < 8; j++) {
             		fread(&pixel, sizeof(unsigned char), 1, file2);
             		pesan[i] |= (pixel & 0x01);
             		
@@ -107,7 +107,6 @@ int main(){
             		}
         		}
         		
-        		printf("%c", pesan[i]);
 				if (pesan[i] == '\0') {
             		break;
         		}
@@ -115,6 +114,7 @@ int main(){
         		i++;
     		}
 			
+        	printf("%s", pesan);
 			fclose(file2);
 			printf("\n\n TEST CONDITION\n\n");
 			break;
