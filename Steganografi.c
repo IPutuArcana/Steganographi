@@ -38,7 +38,7 @@ int main(){
 				
 			//	penyisipan ke pixel
 				fseek(file1, 54, SEEK_SET);	
-				if(pesan[i] != '\0'){
+				while(pesan[i] != '\0'){
 					for(int j=0;j<8;j++){
 						
 						fread(&pixel, sizeof(unsigned char), 1, file1);
